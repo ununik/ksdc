@@ -21,6 +21,12 @@ if ($profil->pravomocUprPravomoc) {
 if ($profil->pravomocAddKazani) {
     $container .= '<li><a href="admin.php?page=kazani_new" title="Přidat nové kázání">Přidat kázání</a></li>';
 }
+if ($profil->pravomocAddToKalendar) {
+	$container .= '<li><a href="admin.php?page=kalendar" title="Přidat akce do kalendář">Přidat akce do kalendáře</a></li>';
+}
+if ($profil->pravomocRecyklace) {
+	$container .= '<li>Vytahování smazaných položek z koše</li>';
+}
 $container .= '</ul></td><tr>';
 
 $container .= '</table>';

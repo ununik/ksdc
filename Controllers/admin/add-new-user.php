@@ -12,6 +12,12 @@ if (isset($_POST['login'])) {
     if (isset($_POST['seeOthers']) && $_POST['seeOthers'] == 'on') {
         $newProfil->checkSeeAllUser(true);
     }
+    if (isset($_POST['addKazani']) && $_POST['addKazani'] == 'on') {
+    	$newProfil->checkAddKazani(true);
+    }
+    if (isset($_POST['addToKalendar']) && $_POST['addToKalendar'] == 'on') {
+    	$newProfil->checkAddToKalendar(true);
+    }
     $newProfil->checkFirstname($_POST['firstname']);
     $newProfil->checkLastname($_POST['lastname']);
     $newProfil->checkLogin($_POST['login']);

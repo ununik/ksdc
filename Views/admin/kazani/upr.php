@@ -1,5 +1,12 @@
 <?php
 $container = "<h1>{$kazani_one['nazev']} - úprava</h1>";
+
+$container .= '<ul>';
+foreach ($kazani->getErrors() as $err) {
+	$container .= "<li>$err</li>";
+}
+$container .= '</ul>';
+
 $container .= '<form action="" method="post">';
 $container .= '<table>';
 $container .= '<tr><td>Datum:</td><td><input type="date" name="datum" value="'.$kazani->date.'"></td></tr>';

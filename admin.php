@@ -25,6 +25,7 @@ if (!isset($_SESSION['ksdc'])) {
 	}
 	
 	$html->addToSideNavigation('<a href="admin.php?page=kazani" title="Kázání">Kázání</a>');
+	$html->addToSideNavigation('<a href="admin.php?page=kalendar" title="Kalendář">Kalendář</a>');
 	
 	$html->addToTopNavigation('<a href="admin.php?page=unlog" title="Odhlásit se">Odhlásit se</a>');
 	

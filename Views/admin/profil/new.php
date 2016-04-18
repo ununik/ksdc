@@ -40,6 +40,22 @@ if ($profil->pravomocUprPravomoc) {
         $container .= '<input type="checkbox" name="uprPravomoc">';
     }
     $container .= ' Upravit pravomoci uživatele</li>';
+    
+    $container .= '<li>';
+    if ($newProfil->addKazani()) {
+    	$container .= '<input type="checkbox" checked="checked" name="addKazani">';
+    } else {
+    	$container .= '<input type="checkbox" name="addKazani">';
+    }
+    $container .= ' Přidat kázání</li>';
+    
+    $container .= '<li>';
+    if ($newProfil->addToKalendar()) {
+    	$container .= '<input type="checkbox" checked="checked" name="addToKalendar">';
+    } else {
+    	$container .= '<input type="checkbox" name="addToKalendar">';
+    }
+    $container .= ' Přidat akci do kalendáře</li>';
 
     $container .= '</ul></td><tr>';
 }

@@ -9,6 +9,8 @@ class ProfilAdmin extends Connection
 	public $pravomocUprPravomoc = false;
 	public $pravomocSeeOtherUsers = false;
 	public $pravomocAddKazani = false;
+	public $pravomocRecyklace = false;
+	public $pravomocAddToKalendar = false;
 	
 	public function __construct($profilId)
 	{
@@ -26,6 +28,8 @@ class ProfilAdmin extends Connection
 		$this->pravomocUprPravomoc = $login['pravomoc-uprPravomoc'];
 		$this->pravomocSeeOtherUsers = $login['pravomoc-seeOtherUsers'];
 		$this->pravomocAddKazani = $login['pravomoc-addKazani'];
+		$this->pravomocRecyklace = $login['pravomoc-recyklace'];
+		$this->pravomocAddToKalendar = $login['pravomoc-addToKalendar'];
 	}
 	
 	public function getName()

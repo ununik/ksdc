@@ -8,6 +8,8 @@ class ProfilNew extends Connection
     private $_addNewUser = false;
     private $_uprPravomoc = false;
     private $_seeAllUser = false;
+    private $_addToKalendar = false;
+    private $_addKazani = false;
     private $_err = array();
     
     public function checkSeeAllUser($value)
@@ -17,6 +19,22 @@ class ProfilNew extends Connection
     public function seeAllUsers()
     {
         return $this->_seeAllUser;
+    }
+    public function checkAddKazani($value)
+    {
+    	$this->_addKazani = $value;
+    }
+    public function addKazani()
+    {
+    	return $this->_addKazani;
+    }
+    public function checkAddToKalendar($value)
+    {
+    	$this->_addToKalendar = $value;
+    }
+    public function addToKalendar()
+    {
+    	return $this->_addToKalendar;
     }
     public function checkAddNewUser($value)
     {
@@ -85,7 +103,7 @@ class ProfilNew extends Connection
     public function addUser()
     {
         $result = Connection::connect()->prepare(
-            "INSERT INTO `be_users`(`login`, `password`, `firstname`, `lastname`, `pravomoc-newUser`, `pravomoc-uprPravomoc`, `addByUser`, `pravomoc-seeOtherUsers`) VALUES (:login, :password, :firstname, :lastname, :newUser, :uprPravomoc, :id, :seeOthers)"
+            "INSERT INTO `be_users`(`login`, `password`, `firstname`, `lastname`, `pravomoc-newUser`, `pravomoc-uprPravomoc`, `addByUser`, `pravomoc-seeOtherUsers`, `pravomoc-addToKalendar`, `pravomoc-addKazani`) VALUES (:login, :password, :firstname, :lastname, :newUser, :uprPravomoc, :id, :seeOthers, :addToKalendar, :addKazani)"
         );
         $result->execute(array(
             ':id' => $_SESSION['ksdc'],
@@ -95,7 +113,9 @@ class ProfilNew extends Connection
             ':password' => \Library\Admin\hashPassword($this->_password),
             ':newUser' => $this->_addNewUser,
             ':uprPravomoc' => $this->_uprPravomoc,
-            ':seeOthers' => $this->_seeAllUser
+            ':seeOthers' => $this->_seeAllUser,
+        	':addToKalendar' => $this->_addToKalendar,
+        	':addKazani' => $this->_addKazani
         ));
     }
 }

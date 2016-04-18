@@ -22,10 +22,18 @@ class Kazani extends Connection
     public function getAllKazani()
     {
         $result = Connection::connect()->prepare(
-                "SELECT * FROM `kazani` ORDER BY date DESC;"
+                "SELECT * FROM `kazani` WHERE active=1 ORDER BY date DESC;"
                 );
         $result->execute();
         return $result->fetchAll();
+    }
+    public function getAllKazaniFromKos()
+    {
+    	$result = Connection::connect()->prepare(
+    			"SELECT * FROM `kazani` WHERE active=0 ORDER BY date DESC;"
+    	);
+    	$result->execute();
+    	return $result->fetchAll();
     }
     public function getAutor($id)
     {
@@ -142,17 +150,26 @@ class Kazani extends Connection
     public function delete($id)
     {
         $result = Connection::connect()->prepare(
-                "DELETE FROM `kazani` WHERE id=:id;"
+                "UPDATE `kazani` SET `active`=0 WHERE id=:id;"
                 );
         $result->execute(array(
                 ':id' => $id
         ));
     }
+    public function kazaniFromKos($id)
+    {
+    	$result = Connection::connect()->prepare(
+    			"UPDATE `kazani` SET `active`=1 WHERE id=:id;"
+    	);
+    	$result->execute(array(
+    			':id' => $id
+    	));
+    }
     
     public function getOneKazani($id)
     {
         $result = Connection::connect()->prepare(
-                "SELECT * FROM `kazani` WHERE id=:id;"
+                "SELECT * FROM `kazani` WHERE id=:id AND active=1 ;"
                 );
         $result->execute(array(':id' => $id));
         $kazani = $result->fetch();
@@ -161,7 +178,6 @@ class Kazani extends Connection
         $this->popis = $kazani['popis'];
         $this->date = date("Y-m-d", $kazani['date']);
         $this->autor = $this->getAutor($kazani['autor'])['jmeno'];
-        
         
         return $kazani;
     }
